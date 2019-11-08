@@ -67,6 +67,14 @@ const getDomos = (request, response) => {
 };
 
 
+const deleteDomo = (request, response) => {
+  const req = request;
+  const res = response;
+
+  Domo.remove( {'owner' : req.session.account._id }, 1);
+};
+
 module.exports.makerPage = makerPage;
 module.exports.getDomos = getDomos;
 module.exports.make = makeDomo;
+module.exports.deleteDomo = deleteDomo;

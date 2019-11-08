@@ -17,24 +17,37 @@ const handleDomo = (e) => {
 
 const DomoForm = (props) => {
   return (
-    <form id="domoForm"
-      name="domoForm"
-      onSubmit={handleDomo}
-      action="/maker"
-      method="POST"
-      className="domoForm"
-    >
-      <label htmlFor="name">Name: </label>
-      <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
-      <label htmlFor="age">Age: </label>
-      <input id="domoAge" type="text" name="age" placeholder="Domo Age"/>
-    
-      <label htmlFor="level">Level: </label>
-      <input id="domoLevel" type="text" name="level" placeholder="Domo Level"/>
-    
-      <input type="hidden" name="_csrf" value={props.csrf}/>
-      <input className="makeDomoSubmit" type="submit" value="Make Domo" />
-    </form>
+    <div>
+      <form id="domoForm"
+        name="domoForm"
+        onSubmit={handleDomo}
+        action="/maker"
+        method="POST"
+        className="domoForm"
+      >
+        <label htmlFor="name">Name: </label>
+        <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
+        <label htmlFor="age">Age: </label>
+        <input id="domoAge" type="text" name="age" placeholder="Domo Age"/>
+        <label htmlFor="level">Level: </label>
+        <input id="domoLevel" type="text" name="level" placeholder="Domo Level"/>
+        <input type="hidden" name="_csrf" value={props.csrf}/>
+        <input className="makeDomoSubmit" type="submit" value="Make Domo" />
+      </form>
+      
+      
+      <form id="domoForm2"
+        name="domoForm2"
+        onSubmit={deleteDomo}
+        action="/delete"
+        method="POST"
+        className="domoForm">
+
+        <input type="hidden" name="_csrf" value={props.csrf}/>
+        <input className="deleteDomoSubmit" type="submit" value="Delete Domo" />
+      </form>
+    </div>
+
   );
 };
 
@@ -95,4 +108,28 @@ const getToken = () => {
 $(document).ready(function(){
   getToken();
 });
+
+const CheckDomo = function(props)  {
+  if(props.domos.length === 0) {
+    return true;
+  }
+  return false;
+};
+
+const deleteDomo = (e) => {
+  e.preventDefault();
+  
+  $("#domoMessage").animate({width:'hide'},350);
+  
+  if(CheckDomo) {
+    handleError("RAWR! There are no domos to delete!");
+    return false;
+  }
+  
+  sendAjax('POST', $("#domoForm2").attr("action"), $("#domoForm2").serialize(), function() {
+    loadDomosFromServer();
+  });
+  
+  return false;
+};
 
