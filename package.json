@@ -1,11 +1,11 @@
 {
-  "name": "Logins",
+  "name": "project2",
   "version": "1.0.0",
   "engines": {
     "node": "10.16.0",
     "npm": "6.9.0"
   },
-  "description": "A Simple Login Example using Node.js, Mongo and Redis",
+  "description": "Project 2 for IGME430",
   "main": "./server/app.js",
   "scripts": {
     "buildLoginBundle": "babel ./client/login ./client/helper --presets react --out-file ./hosted/loginbundle.js",
@@ -24,8 +24,8 @@
     "Redis",
     "Login"
   ],
-  "author": "Robby Piwko",
-  "license": "Apache 2.0",
+  "author": "Taylor Cox and Robby Piwko",
+  "license": "UNLICENSED",
   "dependencies": {
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.19.0",
@@ -49,5 +49,13 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.10.1",
     "nodemon": "^1.11.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tec1850/Project2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tec1850/Project2/issues"
+  },
+  "homepage": "https://github.com/tec1850/Project2#readme"
 }
