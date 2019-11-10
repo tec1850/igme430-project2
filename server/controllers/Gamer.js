@@ -1,8 +1,8 @@
 const models = require('../models');
-const Domo = models.Domo;
+const Gamer = models.Gamer;
 
 const makerPage = (req, res) => {
-  Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+  Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({
@@ -10,37 +10,37 @@ const makerPage = (req, res) => {
       });
     }
 
-    return res.render('app', { csrfToken: req.csrfToken(), domos: docs });
+    return res.render('app', { csrfToken: req.csrfToken(), gamers: docs });
   });
 };
 
-const makeDomo = (req, res) => {
+const makeGamer = (req, res) => {
   if (!req.body.name || !req.body.age || !req.body.level) {
     return res.status(400).json({
       error: 'RAWR! Name, age, and level are required.',
     });
   }
 
-  const domoData = {
+  const gamerData = {
     name: req.body.name,
     age: req.body.age,
     level: req.body.level,
     owner: req.session.account._id,
   };
 
-  const newDomo = new Domo.DomoModel(domoData);
+  const newGamer = new Gamer.GamerModel(gamerData);
 
-  const domoPromise = newDomo.save();
+  const gamerPromise = newGamer.save();
 
-  domoPromise.then(() => res.json({
+  gamerPromise.then(() => res.json({
     redirect: '/maker',
   }));
 
-  domoPromise.catch((err) => {
+  gamerPromise.catch((err) => {
     console.log(err);
     if (err.code === 11000) {
       return res.status(400).json({
-        error: 'Domo already exists.',
+        error: 'Gamer already exists.',
       });
     }
 
@@ -49,32 +49,32 @@ const makeDomo = (req, res) => {
     });
   });
 
-  return domoPromise;
+  return gamerPromise;
 };
 
-const getDomos = (request, response) => {
+const getGamers = (request, response) => {
   const req = request;
   const res = response;
 
-  return Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+  return Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occurred' });
     }
 
-    return res.json({ domos: docs });
+    return res.json({ gamers: docs });
   });
 };
 
 
-const deleteDomo = (request, response) => {
+const deleteGamer = (request, response) => {
   const req = request;
   const res = response;
 
-  Domo.remove( {'owner' : req.session.account._id }, 1);
+  Gamer.remove( {'owner' : req.session.account._id }, 1);
 };
 
 module.exports.makerPage = makerPage;
-module.exports.getDomos = getDomos;
-module.exports.make = makeDomo;
-module.exports.deleteDomo = deleteDomo;
+module.exports.getGamers = getGamers;
+module.exports.make = makeGamer;
+module.exports.deleteGamer = deleteGamer;

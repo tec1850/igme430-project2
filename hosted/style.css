@@ -24,8 +24,13 @@ h1, h2, h3 {
 
 nav {
     width: 100%;
+<<<<<<< HEAD
     height: 65px;
     background-color: #121113;
+=======
+    height: 50px;
+    background-color: #EA638C;
+>>>>>>> 734f5e7083d4362966098ed51c6e474146a1f342
 }
 
 nav:nth-child(1) {

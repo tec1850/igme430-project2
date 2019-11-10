@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const _ = require('underscore');
 
-let DomoModel = {};
+let GamerModel = {};
 
 const convertId = mongoose.Types.ObjectId;
 const setName = (name) => _.escape(name).trim();
 
-const DomoSchema = new mongoose.Schema({
+const GamerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -35,21 +35,21 @@ const DomoSchema = new mongoose.Schema({
   },
 });
 
-DomoSchema.statics.toAPI = (doc) => ({
+GamerSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   age: doc.age,
   level: doc.level,
 });
 
-DomoSchema.statics.findByOwner = (ownerId, callback) => {
+GamerSchema.statics.findByOwner = (ownerId, callback) => {
   const search = {
     owner: convertId(ownerId),
   };
 
-  return DomoModel.find(search).select('name age level').exec(callback);
+  return GamerModel.find(search).select('name age level').exec(callback);
 };
 
-DomoModel = mongoose.model('Domo', DomoSchema);
+GamerModel = mongoose.model('Gamer', GamerSchema);
 
-module.exports.DomoModel = DomoModel;
-module.exports.DomoSchema = DomoSchema;
+module.exports.GamerModel = GamerModel;
+module.exports.GamerSchema = GamerSchema;
