@@ -29,13 +29,13 @@ nav:nth-child(1) {
     padding: 5px;
     padding-top: 12px;
     padding-left: 20px;
-    color: white;
+    color: #F7F7F2;
     font-size: 1.3em;
     float: left;
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
-    color: white;
+    color: #F7F7F2;
     text-decoration: none;
     padding: 5px;
     border-radius: 4px;
@@ -65,7 +65,7 @@ nav:nth-child(1) {
     margin-left: 10px;
     font-size: 1.2em;
     float: left;
-    color: white;
+    color: #F7F7F2;
 }
 
 .domoForm input[type=text] {
@@ -78,12 +78,12 @@ nav:nth-child(1) {
     width: 90px;
     background-color: #55acee;
     border-radius: 2px;
-    color: white;
+    color: #F7F7F2;
     text-decoration: none;
 }
 
 .makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
-    color: white;
+    color: #F7F7F2;
 }
 
 .makeDomoSubmit:hover {
@@ -123,12 +123,12 @@ nav:nth-child(1) {
     border-radius: 2px;
     border-color: #66acee;
     padding: 3px 0px;
-    color: white;
+    color: #F7F7F2;
     text-decoration: none;
 }
 
 .formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
-    color: white;
+    color: #F7F7F2;
 }
 
 .formSubmit:hover {
