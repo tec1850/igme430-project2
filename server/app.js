@@ -23,7 +23,6 @@ mongoose.connect(dbURL, (err) => {
   }
 });
 
-
 let redisURL = {
   hostname: 'redis-14978.c44.us-east-1-2.ec2.cloud.redislabs.com', // hostname
   port: '14978', //port number
@@ -35,7 +34,6 @@ if (process.env.REDISCLOUD_URL) {
   redisURL = url.parse(process.env.REDISCLOUD_URL); // process or proess
   redisPass = redisURL.auth.split(':')[1];
 }
-
 
 const router = require('./router.js');
 
@@ -75,7 +73,6 @@ app.use((err, req, res, next) => {
   console.log('Missing CSRF token');
   return false;
 });
-
 
 router(app);
 

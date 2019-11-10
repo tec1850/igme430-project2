@@ -24,13 +24,8 @@ h1, h2, h3 {
 
 nav {
     width: 100%;
-<<<<<<< HEAD
     height: 65px;
     background-color: #121113;
-=======
-    height: 50px;
-    background-color: #EA638C;
->>>>>>> 734f5e7083d4362966098ed51c6e474146a1f342
 }
 
 nav:nth-child(1) {
@@ -41,7 +36,7 @@ nav:nth-child(1) {
     /*padding: 5px;*/
     padding-top: 18px;
     padding-left: 20px;
-    color: #333333;
+    color: #121113;
     font-size: 1.3em;
     float: left;
 }
@@ -60,7 +55,7 @@ nav:nth-child(1) {
     background-color: #333333;
 }
 
-.domoForm {
+.gamerForm {
     border: 2px solid #EA638C;
     height: 35px;
     width: 950px;
@@ -71,7 +66,7 @@ nav:nth-child(1) {
     border-top-right-radius: 4px;
 }
 
-.domoForm label {
+.gamerForm label {
     display: inline-block;
     width: 75px;
     margin-left: 10px;
@@ -80,11 +75,11 @@ nav:nth-child(1) {
     color: #F7F7F2;
 }
 
-.domoForm input[type=text] {
+.gamerForm input[type=text] {
     float: left;
 }
 
-.makeDomoSubmit {
+.makeGamerSubmit {
     transition: background-color 0.4s ease;
     display: inline;
     width: 90px;
@@ -94,11 +89,11 @@ nav:nth-child(1) {
     text-decoration: none;
 }
 
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+.makeGamerSubmit:link, .makeGamerSubmit:visited, .makeGamerSubmit:hover, .makeGamerSubmit:active {
     color: #F7F7F2;
 }
 
-.makeDomoSubmit:hover {
+.makeGamerSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
 }
@@ -160,7 +155,7 @@ nav:nth-child(1) {
     box-shadow: 0px 0px 1px 1px #55acee;
 }
 
-#domoMessage {
+#gamerMessage {
     display: none;
     top: 250px;
     width: 250px;
@@ -171,7 +166,7 @@ nav:nth-child(1) {
     overflow: hidden;
 }
 
-#domoMessage h3 {
+#gamerMessage h3 {
     width: 200px;
     position: absolute;
     top: 0px;
@@ -191,7 +186,7 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
-#domo {
+#gamer {
     z-index: 225;
     margin-top: -20px;
     margin-left: 135px;
@@ -203,7 +198,7 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#domos {
+#gamers {
     width: 50%;
     min-width: 400px;
     border: 2px solid #55acee;
@@ -212,7 +207,7 @@ nav:nth-child(1) {
     margin-top: 100px;
 }
 
-.domo {
+.gamer {
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
@@ -225,14 +220,14 @@ nav:nth-child(1) {
     overflow: hidden;
 }
 
-.domo:hover {
+.gamer:hover {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255, 255, 255, 0.8);
     transition: background-color 2.6s ease-out;
     background-color: #66bfff;
 }
 
-img.domoFace {
+img.gamerFace {
     margin-left: 25px;
     margin-right: 10px;
     height: 50px;
@@ -242,7 +237,7 @@ img.domoFace {
     float: left;
 }
 
-h3.emptyDomo {
+h3.emptyGamer {
     width: 400px;
     font-size: 1.5em;
     margin: 0 auto;
@@ -250,7 +245,7 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.domoName {
+h3.gamerName {
     float: left;
     width: 200px;
     font-weight: bold;
@@ -258,7 +253,7 @@ h3.domoName {
     font-size: 1.5em;
 }
 
-h3.domoAge {
+h3.gamerAge {
     float: right;
     text-align: left;
     width: 100px;
@@ -267,7 +262,7 @@ h3.domoAge {
     font-size: 1.5em;
 }
 
-h3.domoLevel {
+h3.gamerLevel {
     float: right;
     text-align: left;
     width: 100px;
@@ -276,10 +271,10 @@ h3.domoLevel {
     font-size: 1.5em;
 }
 
-.domo:first-child {
+.gamer:first-child {
     margin-top: 10px;
 }
 
-.domo:last-child {
+.gamer:last-child {
     margin-bottom: 10px;
 }
