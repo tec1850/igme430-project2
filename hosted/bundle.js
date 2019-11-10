@@ -1,107 +1,107 @@
 "use strict";
 
-var handleDomo = function handleDomo(e) {
+var handleGamer = function handleGamer(e) {
   e.preventDefault();
 
-  $("#domoMessage").animate({ width: 'hide' }, 350);
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
 
-  if ($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoLevel").val() == '') {
+  if ($("#gamerName").val() == '' || $("#gamerAge").val() == '' || $("#gamerLevel").val() == '') {
     handleError("RAWR! All fields required");
     return false;
   }
 
-  sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function () {
-    loadDomosFromServer();
+  sendAjax('POST', $("#gamerForm").attr("action"), $("#gamerForm").serialize(), function () {
+    loadGamersFromServer();
   });
 
   return false;
 };
 
-var DomoForm = function DomoForm(props) {
+var GamerForm = function GamerForm(props) {
   return React.createElement(
     "div",
     null,
     React.createElement(
       "form",
-      { id: "domoForm",
-        name: "domoForm",
-        onSubmit: handleDomo,
+      { id: "gamerForm",
+        name: "gamerForm",
+        onSubmit: handleGamer,
         action: "/maker",
         method: "POST",
-        className: "domoForm"
+        className: "gamerForm"
       },
       React.createElement(
         "label",
         { htmlFor: "name" },
         "Name: "
       ),
-      React.createElement("input", { id: "domoName", type: "text", name: "name", placeholder: "Domo Name" }),
+      React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Gamer Name" }),
       React.createElement(
         "label",
         { htmlFor: "age" },
         "Age: "
       ),
-      React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Domo Age" }),
+      React.createElement("input", { id: "gamerAge", type: "text", name: "age", placeholder: "Gamer Age" }),
       React.createElement(
         "label",
         { htmlFor: "level" },
         "Level: "
       ),
-      React.createElement("input", { id: "domoLevel", type: "text", name: "level", placeholder: "Domo Level" }),
+      React.createElement("input", { id: "gamerLevel", type: "text", name: "level", placeholder: "Gamer Level" }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
-      React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Make Domo" })
+      React.createElement("input", { className: "makeGamerSubmit", type: "submit", value: "Make Gamer" })
     ),
     React.createElement(
       "form",
-      { id: "domoForm2",
-        name: "domoForm2",
-        onSubmit: deleteDomo,
+      { id: "gamerForm2",
+        name: "gamerForm2",
+        onSubmit: deleteGamer,
         action: "/delete",
         method: "POST",
-        className: "domoForm" },
+        className: "gamerForm" },
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
-      React.createElement("input", { className: "deleteDomoSubmit", type: "submit", value: "Delete Domo" })
+      React.createElement("input", { className: "deleteGamerSubmit", type: "submit", value: "Delete Gamer" })
     )
   );
 };
 
-var DomoList = function DomoList(props) {
-  if (props.domos.length === 0) {
+var GamerList = function GamerList(props) {
+  if (props.gamers.length === 0) {
     return React.createElement(
       "div",
-      { className: "domoList" },
+      { className: "gamerList" },
       React.createElement(
         "h3",
-        { className: "emptyDomo" },
-        "No Domos yet"
+        { className: "emptyGamer" },
+        "No Gamers yet"
       )
     );
   }
 
-  var domoNodes = props.domos.map(function (domo) {
+  var gamerNodes = props.gamers.map(function (gamer) {
     return React.createElement(
       "div",
-      { key: domo._id, className: "domo" },
-      React.createElement("img", { src: "/assets/img/domoface.jpeg", alt: "domo face", className: "domoFace" }),
+      { key: gamer._id, className: "gamer" },
+      React.createElement("img", { src: "/assets/img/gamerface.jpeg", alt: "gamer face", className: "gamerFace" }),
       React.createElement(
         "h3",
-        { className: "domoName" },
+        { className: "gamerName" },
         " Name: ",
-        domo.name,
+        gamer.name,
         " "
       ),
       React.createElement(
         "h3",
-        { className: "domoAge" },
+        { className: "gamerAge" },
         " Age: ",
-        domo.age,
+        gamer.age,
         " "
       ),
       React.createElement(
         "h3",
-        { className: "domoLevel" },
+        { className: "gamerLevel" },
         " Level: ",
-        domo.level,
+        gamer.level,
         " "
       )
     );
@@ -109,23 +109,23 @@ var DomoList = function DomoList(props) {
 
   return React.createElement(
     "div",
-    { classname: "domoList" },
-    domoNodes
+    { classname: "gamerList" },
+    gamerNodes
   );
 };
 
-var loadDomosFromServer = function loadDomosFromServer() {
-  sendAjax('GET', '/getDomos', null, function (data) {
-    ReactDOM.render(React.createElement(DomoList, { domos: data.domos }), document.querySelector("#domos"));
+var loadGamersFromServer = function loadGamersFromServer() {
+  sendAjax('GET', '/getGamers', null, function (data) {
+    ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
   });
 };
 
 var setup = function setup(csrf) {
-  ReactDOM.render(React.createElement(DomoForm, { csrf: csrf }), document.querySelector("#makeDomo"));
+  ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
 
-  ReactDOM.render(React.createElement(DomoList, { domos: [] }), document.querySelector("#domos"));
+  ReactDOM.render(React.createElement(GamerList, { gamers: [] }), document.querySelector("#gamers"));
 
-  loadDomosFromServer();
+  loadGamersFromServer();
 };
 
 var getToken = function getToken() {
@@ -138,25 +138,25 @@ $(document).ready(function () {
   getToken();
 });
 
-var CheckDomo = function CheckDomo(props) {
-  if (props.domos.length === 0) {
+var CheckGamer = function CheckGamer(props) {
+  if (props.gamers.length === 0) {
     return true;
   }
   return false;
 };
 
-var deleteDomo = function deleteDomo(e) {
+var deleteGamer = function deleteGamer(e) {
   e.preventDefault();
 
-  $("#domoMessage").animate({ width: 'hide' }, 350);
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
 
-  if (CheckDomo) {
-    handleError("RAWR! There are no domos to delete!");
+  if (CheckGamer) {
+    handleError("RAWR! There are no gamers to delete!");
     return false;
   }
 
-  sendAjax('POST', $("#domoForm2").attr("action"), $("#domoForm2").serialize(), function () {
-    loadDomosFromServer();
+  sendAjax('POST', $("#gamerForm2").attr("action"), $("#gamerForm2").serialize(), function () {
+    loadGamersFromServer();
   });
 
   return false;
@@ -165,11 +165,11 @@ var deleteDomo = function deleteDomo(e) {
 
 var handleError = function handleError(message) {
     $("#errorMessage").text(message);
-    $("#domoMessage").animate({ width: 'toggle' }, 350);
+    $("#gamerMessage").animate({ width: 'toggle' }, 350);
 };
 
 var redirect = function redirect(response) {
-    $("#domoMessage").animate({ width: 'hide' }, 350);
+    $("#gamerMessage").animate({ width: 'hide' }, 350);
     window.location = response.redirect;
 };
 
