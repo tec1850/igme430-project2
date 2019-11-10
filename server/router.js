@@ -9,9 +9,7 @@ const router = (app) => {
   app.post('/signup', mid.requireSecure, mid.requireLogout, controllers.Account.signup);
   app.get('/logout', mid.requireLogin, controllers.Account.logout);
   app.get('/account', mid.requireLogin, controllers.Gamer.accountPage);
-  app.post('/account', mid.requireLogin, controllers.Gamer.make);
-  
-  app.post('/delete', mid.requireLogin, controllers.Gamer.deleteGamer);
+  app.post('/review', mid.requireLogin, controllers.Gamer.make);
   
   app.get('/', mid.requireSecure, mid.requireLogout, controllers.Account.loginPage);
 };

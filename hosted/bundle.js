@@ -26,41 +26,30 @@ var GamerForm = function GamerForm(props) {
       { id: "gamerForm",
         name: "gamerForm",
         onSubmit: handleGamer,
-        action: "/maker",
+        action: "/review",
         method: "POST",
         className: "gamerForm"
       },
       React.createElement(
         "label",
         { htmlFor: "name" },
-        "Name: "
+        "Game: "
       ),
-      React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Gamer Name" }),
+      React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Game" }),
       React.createElement(
         "label",
         { htmlFor: "age" },
-        "Age: "
+        "Recommend: "
       ),
-      React.createElement("input", { id: "gamerAge", type: "text", name: "age", placeholder: "Gamer Age" }),
+      React.createElement("input", { id: "gamerAge", type: "text", name: "age", placeholder: "Recommend" }),
       React.createElement(
         "label",
         { htmlFor: "level" },
-        "Level: "
+        "Review: "
       ),
-      React.createElement("input", { id: "gamerLevel", type: "text", name: "level", placeholder: "Gamer Level" }),
+      React.createElement("input", { id: "gamerLevel", type: "text", name: "level", placeholder: "Review" }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
-      React.createElement("input", { className: "makeGamerSubmit", type: "submit", value: "Make Gamer" })
-    ),
-    React.createElement(
-      "form",
-      { id: "gamerForm2",
-        name: "gamerForm2",
-        onSubmit: deleteGamer,
-        action: "/delete",
-        method: "POST",
-        className: "gamerForm" },
-      React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
-      React.createElement("input", { className: "deleteGamerSubmit", type: "submit", value: "Delete Gamer" })
+      React.createElement("input", { className: "makeGamerSubmit", type: "submit", value: "Post Review" })
     )
   );
 };
@@ -73,7 +62,7 @@ var GamerList = function GamerList(props) {
       React.createElement(
         "h3",
         { className: "emptyGamer" },
-        "No Gamers yet"
+        "No reviews posted"
       )
     );
   }
@@ -86,21 +75,21 @@ var GamerList = function GamerList(props) {
       React.createElement(
         "h3",
         { className: "gamerName" },
-        " Name: ",
+        " Game: ",
         gamer.name,
         " "
       ),
       React.createElement(
         "h3",
         { className: "gamerAge" },
-        " Age: ",
+        " Recommend: ",
         gamer.age,
         " "
       ),
       React.createElement(
         "h3",
         { className: "gamerLevel" },
-        " Level: ",
+        " Review: ",
         gamer.level,
         " "
       )
@@ -145,22 +134,6 @@ var CheckGamer = function CheckGamer(props) {
   return false;
 };
 
-var deleteGamer = function deleteGamer(e) {
-  e.preventDefault();
-
-  $("#gamerMessage").animate({ width: 'hide' }, 350);
-
-  if (CheckGamer) {
-    handleError("RAWR! There are no gamers to delete!");
-    return false;
-  }
-
-  sendAjax('POST', $("#gamerForm2").attr("action"), $("#gamerForm2").serialize(), function () {
-    loadGamersFromServer();
-  });
-
-  return false;
-};
 "use strict";
 
 var handleError = function handleError(message) {

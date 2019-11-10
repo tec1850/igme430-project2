@@ -66,14 +66,6 @@ const getGamers = (request, response) => {
   });
 };
 
-const deleteGamer = (request, response) => {
-  const req = request;
-  const res = response;
-
-  Gamer.remove({ 'owner': req.session.account._id }, 1);
-};
-
 module.exports.accountPage = accountPage;
 module.exports.getGamers = getGamers;
 module.exports.make = makeGamer;
-module.exports.deleteGamer = deleteGamer;
