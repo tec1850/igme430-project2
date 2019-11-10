@@ -8,8 +8,8 @@ const router = (app) => {
   app.post('/login', mid.requireSecure, mid.requireLogout, controllers.Account.login);
   app.post('/signup', mid.requireSecure, mid.requireLogout, controllers.Account.signup);
   app.get('/logout', mid.requireLogin, controllers.Account.logout);
-  app.get('/maker', mid.requireLogin, controllers.Gamer.makerPage);
-  app.post('/maker', mid.requireLogin, controllers.Gamer.make);
+  app.get('/account', mid.requireLogin, controllers.Gamer.accountPage);
+  app.post('/account', mid.requireLogin, controllers.Gamer.make);
   
   app.post('/delete', mid.requireLogin, controllers.Gamer.deleteGamer);
   

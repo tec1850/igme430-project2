@@ -7,7 +7,7 @@ const requireLogin = (req, res, next) => {
 
 const requireLogout = (req, res, next) => {
   if (req.session.account) {
-    return res.redirect('/maker');
+    return res.redirect('/account');
   }
   return next();
 };

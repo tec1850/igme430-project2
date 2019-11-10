@@ -1,7 +1,7 @@
 const models = require('../models');
 const Gamer = models.Gamer;
 
-const makerPage = (req, res) => {
+const accountPage = (req, res) => {
   Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
@@ -33,7 +33,7 @@ const makeGamer = (req, res) => {
   const gamerPromise = newGamer.save();
 
   gamerPromise.then(() => res.json({
-    redirect: '/maker',
+    redirect: '/account',
   }));
 
   gamerPromise.catch((err) => {
@@ -66,15 +66,14 @@ const getGamers = (request, response) => {
   });
 };
 
-
 const deleteGamer = (request, response) => {
   const req = request;
   const res = response;
 
-  Gamer.remove( {'owner' : req.session.account._id }, 1);
+  Gamer.remove({ 'owner': req.session.account._id }, 1);
 };
 
-module.exports.makerPage = makerPage;
+module.exports.accountPage = accountPage;
 module.exports.getGamers = getGamers;
 module.exports.make = makeGamer;
 module.exports.deleteGamer = deleteGamer;

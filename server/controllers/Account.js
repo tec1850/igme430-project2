@@ -33,7 +33,7 @@ const login = (request, response) => {
     req.session.account = Account.AccountModel.toAPI(account);
 
     return res.json({
-      redirect: '/maker'
+      redirect: '/account'
     });
   });
 };
@@ -72,7 +72,7 @@ const signup = (request, response) => {
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
       res.json({
-        redirect: '/maker'
+        redirect: '/account'
       });
     });
 
@@ -92,7 +92,6 @@ const signup = (request, response) => {
   });
 };
 
-
 const getToken = (request, response) => {
   const req = request;
   const res = response;
@@ -103,7 +102,6 @@ const getToken = (request, response) => {
 
   res.json(csrfJSON);
 };
-
 
 module.exports.loginPage = loginPage;
 module.exports.login = login;

@@ -21,7 +21,7 @@ const GamerForm = (props) => {
       <form id="gamerForm"
         name="gamerForm"
         onSubmit={handleGamer}
-        action="/maker"
+        action="/account"
         method="POST"
         className="gamerForm"
       >
