@@ -133,7 +133,6 @@ var CheckGamer = function CheckGamer(props) {
   }
   return false;
 };
-
 "use strict";
 
 var handleError = function handleError(message) {
