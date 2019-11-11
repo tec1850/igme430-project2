@@ -4,7 +4,7 @@ const handleLogin = (e) => {
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
   if ($("#user").val() == '' || $("#pass").val() == '') {
-    handleError("RAWR! Username or password is empty");
+    handleError("Username or password is empty.");
     return false;
   }
 
@@ -21,12 +21,12 @@ const handleSignup = (e) => {
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
   if ($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
-    handleError("RAWR! All fields required");
+    handleError("All fields are required.");
     return false;
   }
 
   if ($("#pass").val() !== $("#pass2").val()) {
-    handleError("RAWR! passwords dont match");
+    handleError("Passwords don't match.");
     return false;
   }
 

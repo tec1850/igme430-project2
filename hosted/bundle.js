@@ -6,7 +6,7 @@ var handleGamer = function handleGamer(e) {
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
   if ($("#gamerName").val() == '' || $("#gamerAge").val() == '' || $("#gamerLevel").val() == '') {
-    handleError("RAWR! All fields required");
+    handleError("All fields are required.");
     return false;
   }
 
