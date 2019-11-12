@@ -41,7 +41,20 @@ var GamerForm = function GamerForm(props) {
         { htmlFor: "age" },
         "Recommend: "
       ),
-      React.createElement("input", { id: "gamerAge", type: "text", name: "age", placeholder: "Recommend" }),
+      React.createElement(
+        "select",
+        { id: "gamerAge", type: "select", name: "age" },
+        React.createElement(
+          "option",
+          { value: "yes" },
+          "Yes"
+        ),
+        React.createElement(
+          "option",
+          { value: "no" },
+          "No"
+        )
+      ),
       React.createElement(
         "label",
         { htmlFor: "level" },

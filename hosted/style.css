@@ -220,6 +220,11 @@ input {
 }
 
 .gamer {
+/*
+    display: flex;
+    align-content: right;
+  
+*/
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
@@ -304,3 +309,10 @@ h3.gamerLevel {
     margin-top: 0em;
     padding: 0em;
 }
+
+#makeGamer{
+    display: flex;
+    align-content: left;
+    flex-direction: row;
+}
+

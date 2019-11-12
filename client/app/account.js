@@ -27,8 +27,13 @@ const GamerForm = (props) => {
       >
         <label htmlFor="name">Game: </label>
         <input id="gamerName" type="text" name="name" placeholder="Game" />
-        <label htmlFor="age">Recommend: </label>
-        <input id="gamerAge" type="text" name="age" placeholder="Recommend" />
+    
+        <label htmlFor="age">Recommend: </label>    
+        <select id="gamerAge" type="select" name="age">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+    
         <label htmlFor="level">Review: </label>
         <input id="gamerLevel" type="text" name="level" placeholder="Review" />
         <input type="hidden" name="_csrf" value={props.csrf} />
