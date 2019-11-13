@@ -15,16 +15,16 @@ const accountPage = (req, res) => {
 };
 
 const makeGamer = (req, res) => {
-  if (!req.body.name || !req.body.age || !req.body.level) {
+  if (!req.body.name || !req.body.recommend || !req.body.review) {
     return res.status(400).json({
-      error: 'RAWR! Name, age, and level are required.',
+      error: 'RAWR! Name, recommend, and review are required.',
     });
   }
 
   const gamerData = {
     name: req.body.name,
-    age: req.body.age,
-    level: req.body.level,
+    recommend: req.body.recommend,
+    review: req.body.review,
     owner: req.session.account._id,
   };
 

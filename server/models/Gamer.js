@@ -14,14 +14,16 @@ const GamerSchema = new mongoose.Schema({
     trim: true,
     set: setName,
   },
-  age: {
+  recommend: {
+    // think we need to change
+    //type: Selection,
     type: Number,
     min: 0,
     required: true,
   },
-  level: {
-    type: Number,
-    min: 0,
+  review: {
+    type: String,
+    trim: true,
     required: true,
   },
   owner: {
@@ -37,8 +39,8 @@ const GamerSchema = new mongoose.Schema({
 
 GamerSchema.statics.toAPI = (doc) => ({
   name: doc.name,
-  age: doc.age,
-  level: doc.level,
+  recommend: doc.recommend,
+  review: doc.review,
 });
 
 GamerSchema.statics.findByOwner = (ownerId, callback) => {
@@ -46,7 +48,7 @@ GamerSchema.statics.findByOwner = (ownerId, callback) => {
     owner: convertId(ownerId),
   };
 
-  return GamerModel.find(search).select('name age level').exec(callback);
+  return GamerModel.find(search).select('name recommend review').exec(callback);
 };
 
 GamerModel = mongoose.model('Gamer', GamerSchema);

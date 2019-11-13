@@ -1,318 +1,365 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap');
-html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background: #F7F7F2;
-    font-family: 'Open Sans', sans-serif;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #F7F7F2;
+  font-family: 'Open Sans', sans-serif;
 }
 
-h1, h2, h3 {
-    font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: 'Roboto', sans-serif;
 }
 
 #logo {
-    height: 40px;
-    width: 40;
-    padding-top: 12px;
-    float: right;
-    border-radius: 8px;
-    margin-left: 10px;
+  height: 40px;
+  width: 40;
+  padding-top: 12px;
+  float: right;
+  border-radius: 8px;
+  margin-left: 10px;
 }
 
 nav {
-    width: 100%;
-    height: 65px;
-    background-color: #121113;
+  width: 100%;
+  height: 65px;
+  background-color: #121113;
 }
 
 nav:nth-child(1) {
-    padding-left: 25px;
+  padding-left: 25px;
 }
 
 .navlink {
-    /*padding: 5px;*/
-    padding-top: 18px;
-    padding-left: 20px;
-    color: #121113;
-    font-size: 1.3em;
-    float: left;
+  /*padding: 5px;*/
+  padding-top: 18px;
+  padding-left: 20px;
+  color: #121113;
+  font-size: 1.3em;
+  float: left;
+  margin-left: 1em;
 }
 
-.navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
-    color: #F7F7F2;
-    text-decoration: none;
-    background-color: #121113;
-    transition: background-color 0.4s ease;
+.navlink a,
+.navlink a:link,
+.navlink a:visited,
+.navlink a:hover,
+.navlink a:active {
+  color: #F7F7F2;
+  text-decoration: none;
+  background-color: #121113;
+  transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
-    transition: color 0.4s ease;
-    color: #EA638C;
+  transition: color 0.4s ease;
+  color: #EA638C;
 }
 
-#loginCSS, #logoutCSS, #signupCSS, #logo {
-    float: right;
-    margin-right: 10px;
+#loginCSS,
+#logoutCSS,
+#signupCSS,
+#logo {
+  float: right;
+  margin-right: 10px;
 }
 
 .gamerForm {
-    border: 2px solid #EA638C;
-    height: 35px;
-    width: 950px;
-    padding-top: 10px;
-    background-color: #EA638C;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
-    margin: 0 auto;
+  border: 2px solid #EA638C;
+  height: 35px;
+  width: 950px;
+  padding-top: 10px;
+  background-color: #EA638C;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 0 auto;
 }
 
 .gamerForm label {
-    display: inline-block;
-    width: 75px;
-    margin-left: 10px;
-    font-size: 1.2em;
-    float: left;
-    color: #F7F7F2;
+  display: inline-block;
+  width: 75px;
+  margin-left: 10px;
+  font-size: 1.2em;
+  float: left;
+  color: #F7F7F2;
 }
 
 .gamerForm input[type=text] {
-    float: left;
-    font-family: 'Open Sans', sans-serif;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
 }
 
 input {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #loginPageHeader {
-    margin-top: 160px;
+  margin-top: 160px;
 }
 
 .makeGamerSubmit {
-    transition: background-color 0.4s ease;
-    display: inline;
-    width: 90px;
-    background-color: #6D72C3;
-    border-radius: 2px;
-    color: #F7F7F2;
-    text-decoration: none;
+  transition: background-color 0.4s ease;
+  display: inline;
+  width: 90px;
+  background-color: #6D72C3;
+  border-radius: 2px;
+  color: #F7F7F2;
+  text-decoration: none;
 }
 
 .makeGamerSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: rgb(159, 163, 247);
+  transition: background-color 0.4s ease;
+  background-color: rgb(159, 163, 247);
 }
 
-.makeGamerSubmit:link, .makeGamerSubmit:visited, .makeGamerSubmit:hover, .makeGamerSubmit:active {
-    color: #F7F7F2;
-    transition: background-color 0.4s ease;
-    background-color: rgb(159, 163, 247);
+.makeGamerSubmit:link,
+.makeGamerSubmit:visited,
+.makeGamerSubmit:hover,
+.makeGamerSubmit:active {
+  color: #F7F7F2;
+  transition: background-color 0.4s ease;
+  background-color: rgb(159, 163, 247);
 }
 
 .mainForm {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 40px;
-    font-size: 1.2em;
+  height: 300px;
+  width: 350px;
+  margin: 0 auto;
+  padding-top: 40px;
+  font-size: 1.2em;
 }
 
 .mainForm h3 {
-    text-align: center;
+  text-align: center;
 }
 
 .mainForm label {
-    display: inline-block;
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
-    font-size: 1.2em;
+  display: inline-block;
+  width: 100px;
+  margin-right: 10px;
+  text-align: right;
+  font-size: 1.2em;
 }
 
 .formSubmit {
-    transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 100px;
-    background-color: #6D72C3;
-    color: #F7F7F2;
-    text-decoration: none;
+  transition: background-color 0.4s ease;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 14px;
+  font-size: 1.2em;
+  width: 100px;
+  background-color: #6D72C3;
+  color: #F7F7F2;
+  text-decoration: none;
 }
 
-.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
-    color: #F7F7F2;
+.formSubmit:link,
+.formSubmit:visited,
+.formSubmit:hover,
+.formSubmit:active {
+  color: #F7F7F2;
 }
 
 .formSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: rgb(159, 163, 247);
+  transition: background-color 0.4s ease;
+  background-color: rgb(159, 163, 247);
 }
 
-#user, #pass, #pass2 {
-    text-align: center;
-    font-size: 1.1em;
-    width: 180px;
-    border-radius: 6px;
+#user,
+#pass,
+#pass2 {
+  text-align: center;
+  font-size: 1.1em;
+  width: 180px;
+  border-radius: 6px;
 }
 
-#user:focus, #pass:focus, #pass2:focus {
-    outline: none;
-    box-shadow: 0px 0px 1px 1px #6D72C3;
+#user:focus,
+#pass:focus,
+#pass2:focus {
+  outline: none;
+  box-shadow: 0px 0px 1px 1px #6D72C3;
 }
 
 #gamerMessage {
-    display: none;
-    top: 250px;
-    width: 250px;
-    height: 650px;
-    position: absolute;
-    z-index: 200;
-    right: 0px;
-    overflow: hidden;
+  display: none;
+  top: 250px;
+  width: 250px;
+  height: 650px;
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  overflow: hidden;
 }
 
 #gamerMessage h3 {
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    margin-top: 40px;
-    left: 20px;
+  width: 200px;
+  position: absolute;
+  top: 0px;
+  margin-top: 40px;
+  left: 20px;
 }
 
 #speech {
-    height: 200px;
-    width: 240px;
-    z-index: 300;
+  height: 200px;
+  width: 240px;
+  z-index: 300;
 }
 
 #errorMessage {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #EA638C;
-    font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #EA638C;
+  font-style: italic;
 }
 
 #gamer {
-    z-index: 225;
-    margin-top: -80px;
-    margin-left: 80px;
-    height: 450px;
-    width: 400px;
-    /*changed*/
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg);
-    transform: rotate(330deg);
-}
-
-#gamers {
-    width: 50%;
-    min-width: 400px;
-    border: 2px solid #6D72C3;
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 100px;
+  z-index: 225;
+  margin-top: -80px;
+  margin-left: 80px;
+  height: 450px;
+  width: 400px;
+  /*changed*/
+  -ms-transform: rotate(330deg);
+  -webkit-transform: rotate(330deg);
+  transform: rotate(330deg);
 }
 
 .gamer {
-/*
-    display: flex;
-    align-content: right;
-  
-*/
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #6D72C3;
-    border-radius: 4px;
-    background-color: #6D72C3;
-    padding: 10px;
-    min-height: 60px;
-    overflow: hidden;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border: 2px solid #6D72C3;
+  border-radius: 4px;
+  background-color: #6D72C3;
+  padding: 10px;
+  min-height: 60px;
+  overflow: hidden;
 }
 
 .gamer:hover {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255, 255, 255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #6D72C3;
+  transition: border-color 0.2s ease-out;
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 img.gamerFace {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top: 10px;
-    float: left;
+  margin-left: 25px;
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+  margin-top: 10px;
+  float: left;
 }
 
 h3.emptyGamer {
-    width: 400px;
-    font-size: 1.5em;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 18px;
+  width: 400px;
+  font-size: 1.5em;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 18px;
 }
 
 h3.gamerName {
-    float: left;
-    width: 200px;
-    font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
+  float: left;
+  width: 200px;
+  font-weight: bold;
+  padding-left: 65px;
+  font-size: 1.5em;
 }
 
 h3.gamerAge {
-    float: right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+  float: right;
+  text-align: left;
+  width: 100px;
+  font-weight: bold;
+  padding-right: 40px;
+  font-size: 1.5em;
 }
 
 h3.gamerLevel {
-    float: right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+  float: right;
+  text-align: left;
+  width: 100px;
+  font-weight: bold;
+  padding-right: 40px;
+  font-size: 1.5em;
 }
 
 .gamer:first-child {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .gamer:last-child {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .header1 {
-    text-align: center;
-    font-size: 3em;
-    margin-bottom: 0em;
-    margin-top: .5em;
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 0em;
+  margin-top: .5em;
 }
 
 .header2 {
-    text-align: center;
-    font-size: 2em;
-    margin-top: 0em;
-    padding: 0em;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 0em;
+  padding: 0em;
 }
 
-#makeGamer{
-    display: flex;
-    align-content: left;
-    flex-direction: row;
+
+/*
+trying to get the bar inputing games to be on left and 
+the account's games to be on right. cant get it right
+  |
+  v
+*/
+
+#makeGamer {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
+
+# middlescreen {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#gamers {
+  width: 50%;
+  min-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -3,7 +3,7 @@ const handleGamer = (e) => {
 
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
-  if ($("#gamerName").val() == '' || $("#gamerAge").val() == '' || $("#gamerLevel").val() == '') {
+  if ($("#gamerName").val() == '' || $("#gamerRecommend").val() == '' || $("#gamerReview").val() == '') {
     handleError("All fields are required.");
     return false;
   }
@@ -25,17 +25,17 @@ const GamerForm = (props) => {
         method="POST"
         className="gamerForm"
       >
-        <label htmlFor="name">Game: </label>
+        <label htmlFor="name"></label>
         <input id="gamerName" type="text" name="name" placeholder="Game" />
     
-        <label htmlFor="age">Recommend: </label>    
-        <select id="gamerAge" type="select" name="age">
+        <label htmlFor="recommend">Recommend: </label>    
+        <select id="gamerRecommend" type="select" name="recommend">
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
     
-        <label htmlFor="level">Review: </label>
-        <input id="gamerLevel" type="text" name="level" placeholder="Review" />
+        <label htmlFor="review"></label>
+        <input id="gamerReview" type="text" name="review" placeholder="Review" />
         <input type="hidden" name="_csrf" value={props.csrf} />
         <input className="makeGamerSubmit" type="submit" value="Post Review" />
       </form>
@@ -57,8 +57,8 @@ const GamerList = function (props) {
       <div key={gamer._id} className="gamer">
         <img src="/assets/img/gamerface.jpeg" alt="gamer face" className="gamerFace" />
         <h3 className="gamerName"> Game: {gamer.name} </h3>
-        <h3 className="gamerAge"> Recommend: {gamer.age} </h3>
-        <h3 className="gamerLevel"> Review: {gamer.level} </h3>
+        <h3 className="gamerRecommend"> Recommend: {gamer.recommend} </h3>
+        <h3 className="gamerReview"> Review: {gamer.review} </h3>
       </div>
     );
   });
