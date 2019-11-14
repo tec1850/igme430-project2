@@ -10,6 +10,7 @@ const router = (app) => {
   app.get('/logout', mid.requireLogin, controllers.Account.logout);
   app.get('/account', mid.requireLogin, controllers.Gamer.accountPage);
   app.post('/review', mid.requireLogin, controllers.Gamer.make);
+  app.get('/home', mid.requireLogin, controllers.Gamer.homePage);
 
   app.get('/', mid.requireSecure, mid.requireLogout, controllers.Account.loginPage);
 };

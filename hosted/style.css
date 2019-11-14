@@ -324,6 +324,10 @@ h3.gamerReview {
   margin: 0 auto;
 }
 
+a.active{
+  color: #6D72C3 !important;
+}
+
 /*
 need to style selector
 https://www.w3schools.com/howto/howto_custom_select.asp
