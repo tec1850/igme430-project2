@@ -15,10 +15,7 @@ const GamerSchema = new mongoose.Schema({
     set: setName,
   },
   recommend: {
-    // think we need to change
-    //type: Selection,
-    type: Number,
-    min: 0,
+    type: String,
     required: true,
   },
   review: {

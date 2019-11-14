@@ -5,7 +5,7 @@ var handleGamer = function handleGamer(e) {
 
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
-  if ($("#gamerName").val() == '' || $("#gamerRecommend").val() == '' || $("#gamerReview").val() == '') {
+  if ($("#gamerName").val() == '' || $("#gamerRecommend").val() == 0 || $("#gamerReview").val() == '') {
     handleError("All fields are required.");
     return false;
   }
@@ -30,16 +30,15 @@ var GamerForm = function GamerForm(props) {
         method: "POST",
         className: "gamerForm"
       },
-      React.createElement("label", { htmlFor: "name" }),
-      React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Game" }),
-      React.createElement(
-        "label",
-        { htmlFor: "recommend" },
-        "Recommend: "
-      ),
+      React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Game Title" }),
       React.createElement(
         "select",
         { id: "gamerRecommend", type: "select", name: "recommend" },
+        React.createElement(
+          "option",
+          { value: "0" },
+          "Recommend"
+        ),
         React.createElement(
           "option",
           { value: "yes" },
@@ -51,8 +50,7 @@ var GamerForm = function GamerForm(props) {
           "No"
         )
       ),
-      React.createElement("label", { htmlFor: "review" }),
-      React.createElement("input", { id: "gamerReview", type: "text", name: "review", placeholder: "Review" }),
+      React.createElement("input", { id: "gamerReview", type: "text", name: "review", placeholder: "Review..." }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
       React.createElement("input", { className: "makeGamerSubmit", type: "submit", value: "Post Review" })
     )
@@ -80,21 +78,21 @@ var GamerList = function GamerList(props) {
       React.createElement(
         "h3",
         { className: "gamerName" },
-        " Game: ",
+        " ",
         gamer.name,
         " "
       ),
       React.createElement(
         "h3",
         { className: "gamerRecommend" },
-        " Recommend: ",
+        " Recommended: ",
         gamer.recommend,
         " "
       ),
       React.createElement(
         "h3",
         { className: "gamerReview" },
-        " Review: ",
+        " ",
         gamer.review,
         " "
       )

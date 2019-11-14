@@ -19,21 +19,21 @@ const login = (request, response) => {
 
   if (!username || !password) {
     return res.status(400).json({
-      error: 'RAWR! All fields are required!'
+      error: 'RAWR! All fields are required!',
     });
   }
 
   return Account.AccountModel.authenticate(username, password, (err, account) => {
     if (err || !account) {
       return res.status(401).json({
-        error: 'Wrong username or password!'
+        error: 'Wrong username or password!',
       });
     }
 
     req.session.account = Account.AccountModel.toAPI(account);
 
     return res.json({
-      redirect: '/account'
+      redirect: '/account',
     });
   });
 };
@@ -48,13 +48,13 @@ const signup = (request, response) => {
 
   if (!req.body.username || !req.body.pass || !req.body.pass2) {
     return res.status(400).json({
-      error: 'RAWR! All fields are required!'
+      error: 'RAWR! All fields are required!',
     });
   }
 
   if (req.body.pass !== req.body.pass2) {
     return res.status(400).json({
-      error: 'RAWR! Passwords do not match!'
+      error: 'RAWR! Passwords do not match!',
     });
   }
 
@@ -72,7 +72,7 @@ const signup = (request, response) => {
     savePromise.then(() => {
       req.session.account = Account.AccountModel.toAPI(newAccount);
       res.json({
-        redirect: '/account'
+        redirect: '/account',
       });
     });
 
@@ -81,12 +81,12 @@ const signup = (request, response) => {
 
       if (err.code === 11000) {
         return res.status(400).json({
-          error: 'Username already in use.'
+          error: 'Username already in use.',
         });
       }
 
       return res.status(400).json({
-        error: 'An error occurred.'
+        error: 'An error occurred.',
       });
     });
   });
