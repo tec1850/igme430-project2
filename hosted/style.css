@@ -13,6 +13,28 @@ h1, h2, h3 {
   font-family: 'Roboto', sans-serif;
 }
 
+.formSubmit {
+  transition: background-color 0.4s ease;
+  display: inline-block;
+  background-color: #6D72C3;
+  border-radius: 4px;
+  color: #F7F7F2;
+  text-decoration: none;
+  margin-top: 5px;
+  border: none;
+}
+
+.formSubmit:hover {
+  transition: background-color 0.4s ease;
+  background-color: rgb(159, 163, 247);
+}
+
+.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
+  color: #F7F7F2;
+  transition: background-color 0.4s ease;
+  background-color: rgb(159, 163, 247);
+}
+
 #logo {
   height: 40px;
   width: 40;
@@ -98,11 +120,12 @@ input {
   display: inline-block;
   width: 90px;
   background-color: #6D72C3;
-  border-radius: 2px;
+  border-radius: 4px;
   color: #F7F7F2;
   text-decoration: none;
   margin-top: 5px;
   float: right;
+  border: none;
 }
 
 .makeGamerSubmit:hover {
@@ -275,6 +298,11 @@ h3.gamerReview {
   margin-top: 10px;
 }
 
+#gamerName, #gamerRecommend, #gamerReview {
+  border-radius: 4px;
+  border: none;
+}
+
 .header1 {
   text-align: center;
   font-size: 3em;
@@ -324,7 +352,7 @@ h3.gamerReview {
   margin: 0 auto;
 }
 
-a.active{
+a.active {
   color: #6D72C3 !important;
 }
 

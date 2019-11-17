@@ -107,13 +107,27 @@ var GamerList = function GamerList(props) {
 };
 
 var loadGamersFromServer = function loadGamersFromServer() {
-  sendAjax('GET', '/getGamers', null, function (data) {
-    ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
-  });
+  var URL = window.location.href;
+  URL = URL.substr(URL.length - 4);
+
+  if (URL == "home") {
+    sendAjax('GET', '/getRecentGamers', null, function (data) {
+      ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
+    });
+  } else {
+    sendAjax('GET', '/getGamers', null, function (data) {
+      ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
+    });
+  }
 };
 
 var setup = function setup(csrf) {
-  ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
+  var URL = window.location.href;
+  URL = URL.substr(URL.length - 7);
+
+  if (URL == "account") {
+    ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
+  }
 
   ReactDOM.render(React.createElement(GamerList, { gamers: [] }), document.querySelector("#gamers"));
 

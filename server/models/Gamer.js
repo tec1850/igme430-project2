@@ -48,6 +48,14 @@ GamerSchema.statics.findByOwner = (ownerId, callback) => {
   return GamerModel.find(search).select('name recommend review').exec(callback);
 };
 
+GamerSchema.statics.findRecent = (callback) => {
+  const search = {
+    recommend: "yes",
+  };
+
+  return GamerModel.find(search).select('name recommend review').exec(callback);
+};
+
 GamerModel = mongoose.model('Gamer', GamerSchema);
 
 module.exports.GamerModel = GamerModel;

@@ -23,7 +23,6 @@ const homePage = (req, res) => {
       });
     }
 
-    //return res.json({ gamers: docs });
     return res.render('home', { csrfToken: req.csrfToken(), gamers: docs });
   });
 };
@@ -37,7 +36,7 @@ const searchPage = (req, res) => {
       });
     }
 
-    //return res.json({ gamers: docs });
+    // return res.json({ gamers: docs });
     return res.render('search', { csrfToken: req.csrfToken(), gamers: docs });
   });
 };
@@ -94,9 +93,23 @@ const getGamers = (request, response) => {
   });
 };
 
+const getRecentGamers = (request, response) => {
+  const req = request;
+  const res = response;
+
+  return Gamer.GamerModel.findRecent((err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occurred' });
+    }
+
+    return res.json({ gamers: docs });
+  });
+};
+
 module.exports.accountPage = accountPage;
 module.exports.getGamers = getGamers;
+module.exports.getRecentGamers = getRecentGamers;
 module.exports.make = makeGamer;
 module.exports.homePage = homePage;
 module.exports.searchPage = searchPage;
-

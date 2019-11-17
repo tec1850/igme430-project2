@@ -25,7 +25,6 @@ const GamerForm = (props) => {
         method="POST"
         className="gamerForm"
       >
-
         <input id="gamerName" type="text" name="name" placeholder="Game Title" />
 
         <select id="gamerRecommend" type="select" name="recommend">
@@ -70,17 +69,33 @@ const GamerList = function (props) {
 };
 
 const loadGamersFromServer = () => {
-  sendAjax('GET', '/getGamers', null, (data) => {
-    ReactDOM.render(
-      <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
-    );
-  });
+  let URL = window.location.href;
+  URL = URL.substr(URL.length - 4);
+
+  if (URL == "home") {
+    sendAjax('GET', '/getRecentGamers', null, (data) => {
+      ReactDOM.render(
+        <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
+      );
+    });
+  } else {
+    sendAjax('GET', '/getGamers', null, (data) => {
+      ReactDOM.render(
+        <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
+      );
+    });
+  }
 };
 
 const setup = function (csrf) {
-  ReactDOM.render(
-    <GamerForm csrf={csrf} />, document.querySelector("#makeGamer")
-  );
+  let URL = window.location.href;
+  URL = URL.substr(URL.length - 7);
+
+  if (URL == "account") {
+    ReactDOM.render(
+      <GamerForm csrf={csrf} />, document.querySelector("#makeGamer")
+    );
+  }
 
   ReactDOM.render(
     <GamerList gamers={[]} />, document.querySelector("#gamers")
@@ -88,7 +103,6 @@ const setup = function (csrf) {
 
   loadGamersFromServer();
 };
-
 
 const getToken = () => {
   sendAjax('GET', '/getToken', null, (result) => {
