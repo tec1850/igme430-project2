@@ -98,3 +98,5 @@ module.exports.accountPage = accountPage;
 module.exports.getGamers = getGamers;
 module.exports.make = makeGamer;
 module.exports.homePage = homePage;
+module.exports.searchPage = searchPage;
+
