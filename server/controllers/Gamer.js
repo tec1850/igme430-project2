@@ -28,6 +28,20 @@ const homePage = (req, res) => {
   });
 };
 
+const searchPage = (req, res) => {
+  Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({
+        error: 'An error occured!',
+      });
+    }
+
+    //return res.json({ gamers: docs });
+    return res.render('search', { csrfToken: req.csrfToken(), gamers: docs });
+  });
+};
+
 const makeGamer = (req, res) => {
   if (!req.body.name || !req.body.recommend || !req.body.review) {
     return res.status(400).json({
