@@ -23,7 +23,8 @@ const homePage = (req, res) => {
       });
     }
 
-    return res.render('app', { csrfToken: req.csrfToken(), gamers: docs });
+    //return res.json({ gamers: docs });
+    return res.render('home', { csrfToken: req.csrfToken(), gamers: docs });
   });
 };
 
