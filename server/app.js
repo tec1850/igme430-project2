@@ -45,6 +45,7 @@ app.use(compression());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
+
 app.use(session({
   key: 'sessionid',
   store: new RedisStore({
@@ -59,6 +60,7 @@ app.use(session({
     httpOnly: true,
   },
 }));
+
 app.engine('handlebars', expressHandlebars({
   defaultLayout: 'main',
 }));

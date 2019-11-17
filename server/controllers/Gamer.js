@@ -15,7 +15,7 @@ const accountPage = (req, res) => {
 };
 
 const homePage = (req, res) => {
-  Gamer.GamerModel.findByOwner(createdDate, (err, docs) => {
+  Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({
