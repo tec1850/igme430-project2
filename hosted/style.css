@@ -128,12 +128,27 @@ input {
   border: none;
 }
 
-.makeGamerSubmit:hover {
+.passChange{
+  transition: background-color 0.4s ease;
+  display: inline-block;
+  width: 130px;
+  height: 30px;
+  background-color: #6D72C3;
+  border-radius: 4px;
+  color: #F7F7F2;
+  text-decoration: none;
+  margin-top: 5px;
+  float: right;
+  border: none;
+  margin-right: 2em;
+}
+
+.makeGamerSubmit:hover, .passChange:hover {
   transition: background-color 0.4s ease;
   background-color: rgb(159, 163, 247);
 }
 
-.makeGamerSubmit:link, .makeGamerSubmit:visited, .makeGamerSubmit:hover, .makeGamerSubmit:active {
+.makeGamerSubmit:link, .makeGamerSubmit:visited, .makeGamerSubmit:hover, .makeGamerSubmit:active, .passChange:link, .passChange:visited, .passChange:hover, .passChange:active {
   color: #F7F7F2;
   transition: background-color 0.4s ease;
   background-color: rgb(159, 163, 247);
