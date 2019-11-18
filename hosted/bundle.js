@@ -131,17 +131,18 @@ var setup = function setup(csrf) {
 
   if (URL == "ount") {
     ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
+    loadGamersFromServer();
   }
 
   if (URL == "arch") {
     ReactDOM.render(React.createElement(SearchForm, { csrf: csrf }), document.querySelector("#searchGamer"));
+    loadGamersFromServer();
   }
 
   if (URL == "ount" || URL == "home" || URL == "arch") {
     ReactDOM.render(React.createElement(GamerList, { gamers: [] }), document.querySelector("#gamers"));
+    loadGamersFromServer();
   }
-
-  loadGamersFromServer();
 };
 
 var getToken = function getToken() {
