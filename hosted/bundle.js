@@ -110,7 +110,7 @@ var loadGamersFromServer = function loadGamersFromServer() {
   var URL = window.location.href;
   URL = URL.substr(URL.length - 4);
 
-  if (URL == "home" || URL == "arch") {
+  if (URL == "home") {
     sendAjax('GET', '/getRecentGamers', null, function (data) {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
@@ -119,7 +119,7 @@ var loadGamersFromServer = function loadGamersFromServer() {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
   } else if (URL == "arch") {
-    sendAjax('GET', '/searchTitle', null, function (data) {
+    sendAjax('GET', '/getTitle', null, function (data) {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
   }
@@ -140,7 +140,6 @@ var setup = function setup(csrf) {
   if (URL == "ount" || URL == "home" || URL == "arch") {
     ReactDOM.render(React.createElement(GamerList, { gamers: [] }), document.querySelector("#gamers"));
   }
-
   loadGamersFromServer();
 };
 
@@ -171,7 +170,7 @@ var handleSearch = function handleSearch(e) {
     return false;
   }
 
-  sendAjax('POST', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
     loadGamersFromServer();
   });
 

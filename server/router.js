@@ -11,7 +11,6 @@ const router = (app) => {
   app.get('/account', mid.requireLogin, controllers.Gamer.accountPage);
   app.post('/review', mid.requireLogin, controllers.Gamer.make);
   app.get('/home', mid.requireLogin, controllers.Gamer.homePage);
-  app.get('/searchTitle', mid.requireLogin, controllers.Gamer.searchTitle);
   app.post('/searchTitle', mid.requireLogin, controllers.Gamer.searchTitle);
   app.get('/search', mid.requireLogin, controllers.Gamer.searchPage);
   app.get('/getRecentGamers', mid.requireLogin, controllers.Gamer.getRecentGamers);

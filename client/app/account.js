@@ -72,7 +72,7 @@ const loadGamersFromServer = () => {
   let URL = window.location.href;
   URL = URL.substr(URL.length - 4);
 
-  if (URL == "home" || URL == "arch") {
+  if (URL == "home") {
     sendAjax('GET', '/getRecentGamers', null, (data) => {
       ReactDOM.render(
         <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
@@ -85,7 +85,7 @@ const loadGamersFromServer = () => {
       );
     });
   } else if (URL == "arch") {
-    sendAjax('GET', '/searchTitle', null, (data) => {
+    sendAjax('GET', '/getTitle', null, (data) => {
       ReactDOM.render(
         <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
       );
@@ -113,9 +113,7 @@ const setup = function (csrf) {
     ReactDOM.render(
       <GamerList gamers={[]} />, document.querySelector("#gamers")
     );
-
   }
-
   loadGamersFromServer();
 };
 
@@ -136,7 +134,6 @@ const CheckGamer = function (props) {
   return false;
 };
 
-
 const handleSearch = (e) => {
   e.preventDefault();
 
@@ -147,7 +144,7 @@ const handleSearch = (e) => {
     return false;
   }
 
-  sendAjax('POST', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
     loadGamersFromServer();
   });
 

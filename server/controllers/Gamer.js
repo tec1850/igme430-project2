@@ -66,7 +66,7 @@ const makeGamer = (req, res) => {
     console.log(err);
     if (err.code === 11000) {
       return res.status(400).json({
-        error: 'Gamer already exists.',
+        error: 'Reviewer already exists.',
       });
     }
 
@@ -95,7 +95,6 @@ const searchGamer = (req, res) => {
 
     return res.json({ gamers: docs });
   });
-
 };
 
 const getGamers = (request, response) => {
