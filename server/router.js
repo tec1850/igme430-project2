@@ -15,8 +15,7 @@ const router = (app) => {
   app.get('/search', mid.requireLogin, controllers.Gamer.searchPage);
   app.get('/getRecentGamers', mid.requireLogin, controllers.Gamer.getRecentGamers);
   
-  app.get('/change', mid.requireSecure, mid.requireLogin, controllers.Account.changePage);
-  //app.post('/change', mid.requireSecure, mid.requireLogin, controllers.Account.login
+  app.post('/account', mid.requireLogin, controllers.Gamer.changePassword);
 
   app.get('/', mid.requireSecure, mid.requireLogout, controllers.Account.loginPage);
 };

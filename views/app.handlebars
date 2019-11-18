@@ -24,12 +24,20 @@
     <div class="navlink" id="logoutCSS"><a id="logoutButton" href="/logout">Log out</a></div>
     <a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo" /></a>
   </nav>
-  
+
   <div>
-    <input class="passChange" type="submit" onclick="window.location.href='/change'" value="Change Password" />
+    <input type="hidden" name="_csrf" value={props.csrf} />
+    <input class="passChange" type="submit" onclick="Gamer/changePassword" value="Change Password" />
+
+    <label htmlFor="pass2"></label>
+    <input id="pass2" type="password" name="pass2" placeholder="retype password" />
+    
+    <label htmlFor="pass"></label>
+    <input id="pass" type="password" name="pass" placeholder="password" />
+    
   </div>
-  
-  <div id="middlescreen">    
+
+  <div id="middlescreen">
     <section id="gamers">
     </section>
     <section id="makeGamer">

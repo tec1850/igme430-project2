@@ -101,20 +101,22 @@ const setup = function (csrf) {
     ReactDOM.render(
       <GamerForm csrf={csrf} />, document.querySelector("#makeGamer")
     );
+    loadGamersFromServer();
   }
 
   if (URL == "arch") {
     ReactDOM.render(
       <SearchForm csrf={csrf} />, document.querySelector("#searchGamer")
     );
+    loadGamersFromServer();
   }
 
   if (URL == "ount" || URL == "home" || URL == "arch") {
     ReactDOM.render(
       <GamerList gamers={[]} />, document.querySelector("#gamers")
     );
+    loadGamersFromServer();
   }
-  loadGamersFromServer();
 };
 
 const getToken = () => {

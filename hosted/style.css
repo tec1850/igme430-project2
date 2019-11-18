@@ -261,13 +261,6 @@ input {
   overflow: hidden;
 }
 
-/*
-.gamer:hover {
-  transition: border-color 0.2s ease-out;
-  border-color: rgba(255, 255, 255, 0.8);
-}
-*/
-
 img.gamerFace {
   margin-right: 10px;
   height: 50px;
@@ -371,7 +364,10 @@ a.active {
   color: #6D72C3 !important;
 }
 
-/*
-need to style selector
-https://www.w3schools.com/howto/howto_custom_select.asp
-*/
+#pass, #pass2{
+  margin-top: 5px;
+  float: right;
+  border: none;
+  margin-right: 2em;
+  margin-top: 5px;
+}
