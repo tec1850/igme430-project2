@@ -56,6 +56,14 @@ GamerSchema.statics.findRecent = (callback) => {
   return GamerModel.find(search).select('name recommend review').exec(callback);
 };
 
+GamerSchema.statics.findByName = (name, callback) => {
+  const search = {
+    name,
+  };
+
+  return GamerModel.find(search).select('name recommend review').exec(callback);
+};
+
 GamerModel = mongoose.model('Gamer', GamerSchema);
 
 module.exports.GamerModel = GamerModel;

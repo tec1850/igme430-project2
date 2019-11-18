@@ -72,14 +72,20 @@ const loadGamersFromServer = () => {
   let URL = window.location.href;
   URL = URL.substr(URL.length - 4);
 
-  if (URL == "home") {
+  if (URL == "home" || URL == "arch") {
     sendAjax('GET', '/getRecentGamers', null, (data) => {
       ReactDOM.render(
         <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
       );
     });
-  } else {
+  } else if (URL == "ount") {
     sendAjax('GET', '/getGamers', null, (data) => {
+      ReactDOM.render(
+        <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
+      );
+    });
+  } else if (URL == "arch") {
+    sendAjax('GET', '/searchTitle', null, (data) => {
       ReactDOM.render(
         <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
       );
@@ -89,17 +95,26 @@ const loadGamersFromServer = () => {
 
 const setup = function (csrf) {
   let URL = window.location.href;
-  URL = URL.substr(URL.length - 7);
+  URL = URL.substr(URL.length - 4);
 
-  if (URL == "account") {
+  if (URL == "ount") {
     ReactDOM.render(
       <GamerForm csrf={csrf} />, document.querySelector("#makeGamer")
     );
   }
 
-  ReactDOM.render(
-    <GamerList gamers={[]} />, document.querySelector("#gamers")
-  );
+  if (URL == "arch") {
+    ReactDOM.render(
+      <SearchForm csrf={csrf} />, document.querySelector("#searchGamer")
+    );
+  }
+
+  if (URL == "ount" || URL == "home" || URL == "arch") {
+    ReactDOM.render(
+      <GamerList gamers={[]} />, document.querySelector("#gamers")
+    );
+
+  }
 
   loadGamersFromServer();
 };
@@ -119,4 +134,40 @@ const CheckGamer = function (props) {
     return true;
   }
   return false;
+};
+
+
+const handleSearch = (e) => {
+  e.preventDefault();
+
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
+
+  if ($("#searchName").val() == '') {
+    handleError("Please enter a game title to search.");
+    return false;
+  }
+
+  sendAjax('POST', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+    loadGamersFromServer();
+  });
+
+  return false;
+};
+
+const SearchForm = (props) => {
+  return (
+    <div>
+      <form id="searchForm"
+        name="searchForm"
+        onSubmit={handleSearch}
+        action="/searchTitle"
+        method="POST"
+        className="searchForm"
+      >
+        <input id="searchName" type="text" name="name" placeholder="Game Title" />
+        <input type="hidden" name="_csrf" value={props.csrf} />
+        <input className="searchSubmit" type="submit" value="Search" />
+      </form>
+    </div>
+  );
 };

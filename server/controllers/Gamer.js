@@ -36,7 +36,6 @@ const searchPage = (req, res) => {
       });
     }
 
-    // return res.json({ gamers: docs });
     return res.render('search', { csrfToken: req.csrfToken(), gamers: docs });
   });
 };
@@ -44,7 +43,7 @@ const searchPage = (req, res) => {
 const makeGamer = (req, res) => {
   if (!req.body.name || !req.body.recommend || !req.body.review) {
     return res.status(400).json({
-      error: 'RAWR! Name, recommend, and review are required.',
+      error: 'Hey! Game title, recommend, and review are required.',
     });
   }
 
@@ -77,6 +76,26 @@ const makeGamer = (req, res) => {
   });
 
   return gamerPromise;
+};
+
+const searchGamer = (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({
+      error: 'Hey! Game title is required.',
+    });
+  }
+
+  Gamer.GamerModel.findByName(req.body.name, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({
+        error: 'An error occured!',
+      });
+    }
+
+    return res.json({ gamers: docs });
+  });
+
 };
 
 const getGamers = (request, response) => {
@@ -113,3 +132,4 @@ module.exports.getRecentGamers = getRecentGamers;
 module.exports.make = makeGamer;
 module.exports.homePage = homePage;
 module.exports.searchPage = searchPage;
+module.exports.searchTitle = searchGamer;

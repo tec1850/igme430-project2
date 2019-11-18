@@ -110,12 +110,16 @@ var loadGamersFromServer = function loadGamersFromServer() {
   var URL = window.location.href;
   URL = URL.substr(URL.length - 4);
 
-  if (URL == "home") {
+  if (URL == "home" || URL == "arch") {
     sendAjax('GET', '/getRecentGamers', null, function (data) {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
-  } else {
+  } else if (URL == "ount") {
     sendAjax('GET', '/getGamers', null, function (data) {
+      ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
+    });
+  } else if (URL == "arch") {
+    sendAjax('GET', '/searchTitle', null, function (data) {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
   }
@@ -123,13 +127,19 @@ var loadGamersFromServer = function loadGamersFromServer() {
 
 var setup = function setup(csrf) {
   var URL = window.location.href;
-  URL = URL.substr(URL.length - 7);
+  URL = URL.substr(URL.length - 4);
 
-  if (URL == "account") {
+  if (URL == "ount") {
     ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
   }
 
-  ReactDOM.render(React.createElement(GamerList, { gamers: [] }), document.querySelector("#gamers"));
+  if (URL == "arch") {
+    ReactDOM.render(React.createElement(SearchForm, { csrf: csrf }), document.querySelector("#searchGamer"));
+  }
+
+  if (URL == "ount" || URL == "home" || URL == "arch") {
+    ReactDOM.render(React.createElement(GamerList, { gamers: [] }), document.querySelector("#gamers"));
+  }
 
   loadGamersFromServer();
 };
@@ -149,6 +159,43 @@ var CheckGamer = function CheckGamer(props) {
     return true;
   }
   return false;
+};
+
+var handleSearch = function handleSearch(e) {
+  e.preventDefault();
+
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
+
+  if ($("#searchName").val() == '') {
+    handleError("Please enter a game title to search.");
+    return false;
+  }
+
+  sendAjax('POST', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+    loadGamersFromServer();
+  });
+
+  return false;
+};
+
+var SearchForm = function SearchForm(props) {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "form",
+      { id: "searchForm",
+        name: "searchForm",
+        onSubmit: handleSearch,
+        action: "/searchTitle",
+        method: "POST",
+        className: "searchForm"
+      },
+      React.createElement("input", { id: "searchName", type: "text", name: "name", placeholder: "Game Title" }),
+      React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+      React.createElement("input", { className: "searchSubmit", type: "submit", value: "Search" })
+    )
+  );
 };
 "use strict";
 
