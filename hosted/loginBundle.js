@@ -132,6 +132,57 @@ var getToken = function getToken() {
 $(document).ready(function () {
   getToken();
 });
+
+var handleChange = function handleChange(e) {
+  e.preventDefault();
+
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
+
+  if ($("#pass").val() == '' || $("#pass2").val() == '') {
+    handleError("All fields are required.");
+    return false;
+  }
+
+  if ($("#pass").val() !== $("#pass2").val()) {
+    handleError("Passwords don't match.");
+    return false;
+  }
+
+  sendAjax('POST', $("#changeForm").attr("action"), $("#changeForm").serialize(), redirect);
+
+  return false;
+};
+
+var changeWindow = function changeWindow(props) {
+  return React.createElement(
+    "form",
+    { id: "changeForm",
+      name: "changeForm",
+      onSubmit: handleSignup,
+      action: "/change",
+      method: "POST",
+      className: "mainForm"
+    },
+    React.createElement(
+      "label",
+      { htmlFor: "pass" },
+      "Password: "
+    ),
+    React.createElement("input", { id: "pass", type: "password", name: "pass", placeholder: "password" }),
+    React.createElement(
+      "label",
+      { htmlFor: "pass2" },
+      "Password: "
+    ),
+    React.createElement("input", { id: "pass2", type: "password", name: "pass2", placeholder: "retype password" }),
+    React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+    React.createElement("input", { className: "formSubmit", type: "submit", value: "Confirm Change" })
+  );
+};
+
+var createChangeWindow = function createChangeWindow(csrf) {
+  ReactDOM.render(React.createElement(ChangeWindow, { csrf: csrf }), document.querySelector("#content"));
+};
 "use strict";
 
 var handleError = function handleError(message) {
