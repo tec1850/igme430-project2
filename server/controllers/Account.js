@@ -105,59 +105,8 @@ const getToken = (request, response) => {
 };
 
 
-const changePage = (req, res) => {
-  res.render('change', { csrfToken: req.csrfToken() });
-};
-
-const changePassword = (request, response) => {
-  const req = request;
-  const res = response;
-
-  req.body.pass = `${req.body.pass}`;
-  req.body.pass2 = `${req.body.pass2}`;
-
-  if (!req.body.pass || !req.body.pass2) {
-    return res.status(400).json({
-      error: 'RAWR! All fields are required!',
-    });
-  }
-
-  if (req.body.pass !== req.body.pass2) {
-    return res.status(400).json({
-      error: 'RAWR! Passwords do not match!',
-    });
-  }
-  
-  return Account.AccountModel.findByUsername(req.session.account.username, (err, doc) => {
-    if (err) {
-      return res.json({error: err})
-    }
-    
-    
-    return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
-      const accountData = {
-        username: req.body.username,
-        salt,
-        password: hash,
-      };
-
-      const savePromise = Account.AccountModel(accountData).save();
-
-      savePromise.then(() => {
-        res.json({
-          redirect: '/account',
-        });
-      });
-    });
-  });
-  
-  
-};
-
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
-module.exports.changePage = changePage;
-module.exports.changePassword = changePassword;

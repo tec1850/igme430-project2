@@ -126,6 +126,56 @@ const getRecentGamers = (request, response) => {
   });
 };
 
+
+
+
+const changePassword = (request, response) => {
+  console.log("hi");
+  const req = request;
+  const res = response;
+
+  req.body.pass = `${req.body.pass}`;
+  req.body.pass2 = `${req.body.pass2}`;
+
+  if (!req.body.pass || !req.body.pass2) {
+    return res.status(400).json({
+      error: 'RAWR! All fields are required!',
+    });
+  }
+
+  if (req.body.pass !== req.body.pass2) {
+    return res.status(400).json({
+      error: 'RAWR! Passwords do not match!',
+    });
+  }
+  
+  return Account.AccountModel.findByUsername(req.session.account.username, (err, doc) => {
+    if (err) {
+      return res.json({error: err})
+    }
+    
+    
+    return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
+      const accountData = {
+        username: req.body.username,
+        salt,
+        password: hash,
+      };
+
+      const savePromise = Account.AccountModel(accountData).save();
+
+      savePromise.then(() => {
+        res.json({
+          redirect: '/account',
+        });
+      });
+    });
+  });
+  
+  
+};
+
+
 module.exports.accountPage = accountPage;
 module.exports.getGamers = getGamers;
 module.exports.getRecentGamers = getRecentGamers;
@@ -133,3 +183,5 @@ module.exports.make = makeGamer;
 module.exports.homePage = homePage;
 module.exports.searchPage = searchPage;
 module.exports.searchTitle = searchGamer;
+
+module.exports.changePassword = changePassword;
