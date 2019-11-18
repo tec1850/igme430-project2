@@ -196,11 +196,12 @@ input {
   background-color: rgb(159, 163, 247);
 }
 
-#user, #pass, #pass2 {
+#user, #pass, #pass2, #creditcardboxes {
   text-align: center;
   font-size: 1.1em;
   width: 180px;
   border-radius: 6px;
+  margin-bottom: 5px;
 }
 
 #user:focus, #pass:focus, #pass2:focus {
@@ -370,4 +371,25 @@ a.active {
   border: none;
   margin-right: 2em;
   margin-top: 5px;
+}
+
+#creditcard{
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+  margin-top: 5px;
+}
+
+#submitCard{
+  display: inline-block;
+  width: 130px;
+  height: 30px;
+  background-color: #6D72C3;
+  border-radius: 4px;
+  color: #F7F7F2;
+  text-decoration: none;
+  margin-top: 5px;
+  float: right;
+  border: none;
+  margin-right: 2em;
 }
