@@ -150,6 +150,8 @@ const changePassword = (request, response) => {
       });
     });
   });
+  
+  
 };
 
 module.exports.loginPage = loginPage;
