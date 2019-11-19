@@ -17,6 +17,23 @@ var handleGamer = function handleGamer(e) {
   return false;
 };
 
+var handleSearch = function handleSearch(e) {
+  e.preventDefault();
+
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
+
+  if ($("#searchName").val() == '') {
+    handleError("Please enter a game title to search.");
+    return false;
+  }
+
+  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+    loadGamersFromServer();
+  });
+
+  return false;
+};
+
 var GamerForm = function GamerForm(props) {
   return React.createElement(
     "div",
@@ -53,6 +70,26 @@ var GamerForm = function GamerForm(props) {
       React.createElement("input", { id: "gamerReview", type: "text", name: "review", placeholder: "Review..." }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
       React.createElement("input", { className: "makeGamerSubmit", type: "submit", value: "Post Review" })
+    )
+  );
+};
+
+var SearchForm = function SearchForm(props) {
+  return React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "form",
+      { id: "searchForm",
+        name: "searchForm",
+        onSubmit: handleSearch,
+        action: "/getReviews",
+        method: "GET",
+        className: "gamerForm"
+      },
+      React.createElement("input", { id: "searchName", type: "text", name: "name", placeholder: "Game Title" }),
+      React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+      React.createElement("input", { className: "searchGamerSubmit", type: "submit", value: "Search" })
     )
   );
 };
@@ -119,7 +156,7 @@ var loadGamersFromServer = function loadGamersFromServer() {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
   } else if (URL == "arch") {
-    sendAjax('GET', '/getTitle', null, function (data) {
+    sendAjax('GET', '/getReviews', null, function (data) {
       ReactDOM.render(React.createElement(GamerList, { gamers: data.gamers }), document.querySelector("#gamers"));
     });
   }
@@ -132,9 +169,7 @@ var setup = function setup(csrf) {
   if (URL == "ount") {
     ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
     loadGamersFromServer();
-  }
-
-  if (URL == "arch") {
+  } else if (URL == "arch") {
     ReactDOM.render(React.createElement(SearchForm, { csrf: csrf }), document.querySelector("#searchGamer"));
     loadGamersFromServer();
   }
@@ -151,10 +186,6 @@ var getToken = function getToken() {
   });
 };
 
-$(document).ready(function () {
-  getToken();
-});
-
 var CheckGamer = function CheckGamer(props) {
   if (props.gamers.length === 0) {
     return true;
@@ -162,42 +193,9 @@ var CheckGamer = function CheckGamer(props) {
   return false;
 };
 
-var handleSearch = function handleSearch(e) {
-  e.preventDefault();
-
-  $("#gamerMessage").animate({ width: 'hide' }, 350);
-
-  if ($("#searchName").val() == '') {
-    handleError("Please enter a game title to search.");
-    return false;
-  }
-
-  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
-    loadGamersFromServer();
-  });
-
-  return false;
-};
-
-var SearchForm = function SearchForm(props) {
-  return React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "form",
-      { id: "searchForm",
-        name: "searchForm",
-        onSubmit: handleSearch,
-        action: "/searchTitle",
-        method: "POST",
-        className: "searchForm"
-      },
-      React.createElement("input", { id: "searchName", type: "text", name: "name", placeholder: "Game Title" }),
-      React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
-      React.createElement("input", { className: "searchSubmit", type: "submit", value: "Search" })
-    )
-  );
-};
+$(document).ready(function () {
+  getToken();
+});
 "use strict";
 
 var handleError = function handleError(message) {

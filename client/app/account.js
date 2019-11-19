@@ -15,6 +15,23 @@ const handleGamer = (e) => {
   return false;
 };
 
+const handleSearch = (e) => {
+  e.preventDefault();
+
+  $("#gamerMessage").animate({ width: 'hide' }, 350);
+
+  if ($("#searchName").val() == '') {
+    handleError("Please enter a game title to search.");
+    return false;
+  }
+
+  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+    loadGamersFromServer();
+  });
+
+  return false;
+};
+
 const GamerForm = (props) => {
   return (
     <div>
@@ -36,6 +53,24 @@ const GamerForm = (props) => {
         <input id="gamerReview" type="text" name="review" placeholder="Review..." />
         <input type="hidden" name="_csrf" value={props.csrf} />
         <input className="makeGamerSubmit" type="submit" value="Post Review" />
+      </form>
+    </div>
+  );
+};
+
+const SearchForm = (props) => {
+  return (
+    <div>
+      <form id="searchForm"
+        name="searchForm"
+        onSubmit={handleSearch}
+        action="/getReviews"
+        method="GET"
+        className="gamerForm"
+      >
+        <input id="searchName" type="text" name="name" placeholder="Game Title" />
+        <input type="hidden" name="_csrf" value={props.csrf} />
+        <input className="searchGamerSubmit" type="submit" value="Search" />
       </form>
     </div>
   );
@@ -85,7 +120,7 @@ const loadGamersFromServer = () => {
       );
     });
   } else if (URL == "arch") {
-    sendAjax('GET', '/getTitle', null, (data) => {
+    sendAjax('GET', '/getReviews', null, (data) => {
       ReactDOM.render(
         <GamerList gamers={data.gamers} />, document.querySelector("#gamers")
       );
@@ -102,9 +137,7 @@ const setup = function (csrf) {
       <GamerForm csrf={csrf} />, document.querySelector("#makeGamer")
     );
     loadGamersFromServer();
-  }
-
-  if (URL == "arch") {
+  } else if (URL == "arch") {
     ReactDOM.render(
       <SearchForm csrf={csrf} />, document.querySelector("#searchGamer")
     );
@@ -125,10 +158,6 @@ const getToken = () => {
   });
 };
 
-$(document).ready(function () {
-  getToken();
-});
-
 const CheckGamer = function (props) {
   if (props.gamers.length === 0) {
     return true;
@@ -136,37 +165,6 @@ const CheckGamer = function (props) {
   return false;
 };
 
-const handleSearch = (e) => {
-  e.preventDefault();
-
-  $("#gamerMessage").animate({ width: 'hide' }, 350);
-
-  if ($("#searchName").val() == '') {
-    handleError("Please enter a game title to search.");
-    return false;
-  }
-
-  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
-    loadGamersFromServer();
-  });
-
-  return false;
-};
-
-const SearchForm = (props) => {
-  return (
-    <div>
-      <form id="searchForm"
-        name="searchForm"
-        onSubmit={handleSearch}
-        action="/searchTitle"
-        method="POST"
-        className="searchForm"
-      >
-        <input id="searchName" type="text" name="name" placeholder="Game Title" />
-        <input type="hidden" name="_csrf" value={props.csrf} />
-        <input className="searchSubmit" type="submit" value="Search" />
-      </form>
-    </div>
-  );
-};
+$(document).ready(function () {
+  getToken();
+});

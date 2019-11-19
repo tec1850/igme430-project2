@@ -196,7 +196,7 @@ input {
   background-color: rgb(159, 163, 247);
 }
 
-#user, #pass, #pass2, #creditcardboxes {
+#user, #pass, #pass2, .creditcardboxes {
   text-align: center;
   font-size: 1.1em;
   width: 180px;
@@ -392,4 +392,30 @@ a.active {
   float: right;
   border: none;
   margin-right: 2em;
+}
+
+.changeForm {
+  border: 2px solid #6D72C3;
+  width: 80%;
+  padding: 25px;
+  padding-bottom: 40px;
+  background-color: #6D72C3;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.changeForm input[type=text] {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.changeForm input[type=text]:nth-child(1) {
+  width: 60%;
+  display: inline;
+}
+
+.changeForm input[type=text]:nth-child(3) {
+  min-height: 100px;
+  width: 100%;
 }

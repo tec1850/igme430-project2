@@ -5,7 +5,6 @@ const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
-
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
@@ -20,7 +19,7 @@ const login = (request, response) => {
 
   if (!username || !password) {
     return res.status(400).json({
-      error: 'RAWR! All fields are required!',
+      error: 'Hey! All fields are required!',
     });
   }
 
@@ -67,7 +66,6 @@ const signup = (request, response) => {
     };
 
     const newAccount = new Account.AccountModel(accountData);
-
     const savePromise = newAccount.save();
 
     savePromise.then(() => {
@@ -82,12 +80,57 @@ const signup = (request, response) => {
 
       if (err.code === 11000) {
         return res.status(400).json({
-          error: 'Username is already in use.',
+          error: 'Username already in use.',
         });
       }
 
       return res.status(400).json({
-        error: 'An error has occurred.',
+        error: 'An error occurred.',
+      });
+    });
+  });
+};
+
+const changePass = (request, response) => {
+  const req = request;
+  const res = response;
+
+  req.body.pass = `${req.body.pass}`;
+  req.body.pass2 = `${req.body.pass2}`;
+
+  if (!req.body.pass || !req.body.pass2) {
+    return res.status(400).json({
+      error: 'Hey! All fields are required!',
+    });
+  }
+
+  if (req.body.pass !== req.body.pass2) {
+    return res.status(400).json({
+      error: 'Hey! Passwords do not match!',
+    });
+  }
+
+  return Account.AccountModel.generateHash(req.body.pass, (salt, hash) => {
+    const accountData = {
+      username: req.session.account.username,
+      salt,
+      password: hash,
+    };
+
+    req.session.account = Account.AccountModel.toAPI(new Account.AccountModel(accountData));
+    const savePromise = req.session.account.save();
+
+    savePromise.then(() => {
+      res.json({
+        redirect: '/account',
+      });
+    });
+
+    savePromise.catch((err) => {
+      console.log(err);
+
+      return res.status(400).json({
+        error: 'An error occurred.',
       });
     });
   });
@@ -104,9 +147,9 @@ const getToken = (request, response) => {
   res.json(csrfJSON);
 };
 
-
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
+module.exports.changePass = changePass;

@@ -25,34 +25,23 @@
     <a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo" /></a>
   </nav>
 
-  <div>
-    <input type="hidden" name="_csrf" value={props.csrf} />
-    <input class="passChange" type="submit" onclick="Gamer/changePassword" value="Change Password" />
-
-    <label htmlFor="pass2"></label>
-    <input id="pass2" type="password" name="pass2" placeholder="retype password" />
-    
-    <label htmlFor="pass"></label>
-    <input id="pass" type="password" name="pass" placeholder="password" />
-    
-  </div>
-  
   <div id="creditcard">
-    <input id="creditcardboxes"  type="text" placeholder="Credit Card Name" disabled></input>
-    <input id="creditcardboxes"  type="text" placeholder="Credit Card Number" disabled></input>
-  <input id="creditcardboxes" type="text" placeholder="CVV" disabled></input>
-  <input id="creditcardboxes"  type="text" placeholder="Exp Date" disabled></input>
+    <input class="creditcardboxes" type="text" placeholder="Credit Card Name" disabled></input>
+    <input class="creditcardboxes" type="text" placeholder="Credit Card Number" disabled></input>
+    <input class="creditcardboxes" type="text" placeholder="CVV" disabled></input>
+    <input class="creditcardboxes" type="text" placeholder="Exp Date" disabled></input>
 
-<button id="submitCard" disabled>Submit</button>
+    <button id="submitCard" disabled>Submit</button>
 
   </div>
+
 
   <div id="middlescreen">
-    <section id="gamers">
-    </section>
-    <section id="makeGamer">
-    </section>
+    <section id="gamers"></section>
+    <section id="makeGamer"></section>
+    <section id="content"></section>
   </div>
+
   <div id="gamerMessage"><img id="speech" src="/assets/img/speech.png" alt="speech box" />
     <h3><span id="errorMessage"></span></h3><img id="gamer" src="assets/img/gamer.png" alt="gamer" />
   </div>
