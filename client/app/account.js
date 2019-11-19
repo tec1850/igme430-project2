@@ -54,7 +54,7 @@ const GamerForm = (props) => {
           <option value="no">No</option>
         </select>
 
-        <input id="gamerReview" type="text" name="review" placeholder="Review..." />
+        <textarea id="gamerReview" type="text" name="review" rows="5" cols="50"  placeholder="Review..." />
         <input type="hidden" name="_csrf" value={props.csrf} />
         <input className="makeGamerSubmit" type="submit" value="Post Review" />
       </form>
@@ -70,7 +70,7 @@ const SearchForm = (props) => {
         onSubmit={handleSearch}
         action="/getReviews"
         method="POST"
-        className="gamerForm"
+        className="searchForm"
       >
         <input id="gamerName" type="text" name="name" placeholder="Game Title" />
         <input type="hidden" name="_csrf" value={props.csrf} />

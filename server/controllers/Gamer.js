@@ -1,6 +1,6 @@
 const models = require('../models');
 const Gamer = models.Gamer;
-let gameTitle = "";
+let gameTitle = '';
 
 const accountPage = (req, res) => {
   Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -75,13 +75,14 @@ const makeGamer = (req, res) => {
   return gamerPromise;
 };
 
-
 const getReviews = (request, response) => {
   const req = request;
   const res = response;
-  console.log("Searching:", req.body.name);
 
-  if (!req.body.name == '' || !req.body.name == undefined) {
+  console.log(JSON.stringify(req.body.name));
+
+  if (req.body.name !== undefined) {
+    console.log(JSON.stringify(req.body.name));
     gameTitle = req.body.name;
   }
 
@@ -105,14 +106,13 @@ const getGamers = (request, response) => {
     }
     return res.json({ gamers: docs });
   });
-
 };
 
 const getRecentGamers = (request, response) => {
   const req = request;
   const res = response;
 
-  console.log("Account Id: " + req.session.account._id);
+  console.log(`Account Id: ${req.session.account._id}`);
 
   return Gamer.GamerModel.findRecent((err, docs) => {
     if (err) {

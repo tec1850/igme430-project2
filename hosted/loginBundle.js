@@ -173,12 +173,6 @@ var setup = function setup(csrf) {
     return false;
   });
 
-  passChangeButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    createChangeWindow(csrf);
-    return false;
-  });
-
   createLoginWindow(csrf);
 };
 

@@ -152,12 +152,6 @@ const setup = (csrf) => {
     return false;
   });
 
-  passChangeButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    createChangeWindow(csrf);
-    return false;
-  });
-
   createLoginWindow(csrf);
 };
 

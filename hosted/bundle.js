@@ -70,7 +70,7 @@ var GamerForm = function GamerForm(props) {
           "No"
         )
       ),
-      React.createElement("input", { id: "gamerReview", type: "text", name: "review", placeholder: "Review..." }),
+      React.createElement("textarea", { id: "gamerReview", type: "text", name: "review", rows: "5", cols: "50", placeholder: "Review..." }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
       React.createElement("input", { className: "makeGamerSubmit", type: "submit", value: "Post Review" })
     )
@@ -88,7 +88,7 @@ var SearchForm = function SearchForm(props) {
         onSubmit: handleSearch,
         action: "/getReviews",
         method: "POST",
-        className: "gamerForm"
+        className: "searchForm"
       },
       React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Game Title" }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
