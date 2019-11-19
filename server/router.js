@@ -4,6 +4,7 @@ const mid = require('./middleware');
 const router = (app) => {
   app.get('/getToken', mid.requireSecure, controllers.Account.getToken);
   app.get('/getGamers', mid.requireLogin, controllers.Gamer.getGamers);
+  app.get('/getRecentGamers', mid.requireLogin, controllers.Gamer.getRecentGamers);
 
   app.get('/login', mid.requireSecure, mid.requireLogout, controllers.Account.loginPage);
   app.post('/login', mid.requireSecure, mid.requireLogout, controllers.Account.login);
@@ -17,8 +18,8 @@ const router = (app) => {
   app.post('/review', mid.requireLogin, controllers.Gamer.make);
 
   app.get('/getReviews', mid.requireLogin, controllers.Gamer.getReviews);
+  app.post('/getReviews', mid.requireLogin, controllers.Gamer.getReviews);
   app.get('/search', mid.requireLogin, controllers.Gamer.searchPage);
-  app.get('/getRecentGamers', mid.requireLogin, controllers.Gamer.getRecentGamers);
 
   app.get('/', mid.requireSecure, mid.requireLogout, controllers.Account.loginPage);
 };

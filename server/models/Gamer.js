@@ -50,15 +50,15 @@ GamerSchema.statics.findByOwner = (ownerId, callback) => {
 
 GamerSchema.statics.findRecent = (callback) => {
   const search = {
-    recommend: 'yes',
+    recommend: "yes",
   };
 
   return GamerModel.find(search).select('name recommend review').exec(callback);
 };
 
-GamerSchema.statics.findByName = (name, callback) => {
+GamerSchema.statics.findByName = (title, callback) => {
   const search = {
-    name,
+    name: title,
   };
 
   return GamerModel.find(search).select('name recommend review').exec(callback);

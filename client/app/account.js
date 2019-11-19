@@ -7,6 +7,10 @@ const handleGamer = (e) => {
     handleError("All fields are required.");
     return false;
   }
+  else if (document.querySelectorAll('.gamer').length >= 6) {
+    handleError("Upgrade to premium to continue posting.");
+    return false;
+  }
 
   sendAjax('POST', $("#gamerForm").attr("action"), $("#gamerForm").serialize(), function () {
     loadGamersFromServer();
@@ -20,12 +24,12 @@ const handleSearch = (e) => {
 
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
-  if ($("#searchName").val() == '') {
+  if ($("#gamerName").val() == '') {
     handleError("Please enter a game title to search.");
     return false;
   }
 
-  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+  sendAjax('POST', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
     loadGamersFromServer();
   });
 
@@ -65,10 +69,10 @@ const SearchForm = (props) => {
         name="searchForm"
         onSubmit={handleSearch}
         action="/getReviews"
-        method="GET"
+        method="POST"
         className="gamerForm"
       >
-        <input id="searchName" type="text" name="name" placeholder="Game Title" />
+        <input id="gamerName" type="text" name="name" placeholder="Game Title" />
         <input type="hidden" name="_csrf" value={props.csrf} />
         <input className="searchGamerSubmit" type="submit" value="Search" />
       </form>
@@ -137,7 +141,9 @@ const setup = function (csrf) {
       <GamerForm csrf={csrf} />, document.querySelector("#makeGamer")
     );
     loadGamersFromServer();
-  } else if (URL == "arch") {
+  }
+
+  if (URL == "arch") {
     ReactDOM.render(
       <SearchForm csrf={csrf} />, document.querySelector("#searchGamer")
     );

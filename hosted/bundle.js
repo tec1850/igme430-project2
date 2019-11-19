@@ -8,6 +8,9 @@ var handleGamer = function handleGamer(e) {
   if ($("#gamerName").val() == '' || $("#gamerRecommend").val() == 0 || $("#gamerReview").val() == '') {
     handleError("All fields are required.");
     return false;
+  } else if (document.querySelectorAll('.gamer').length >= 6) {
+    handleError("Upgrade to premium to continue posting.");
+    return false;
   }
 
   sendAjax('POST', $("#gamerForm").attr("action"), $("#gamerForm").serialize(), function () {
@@ -22,12 +25,12 @@ var handleSearch = function handleSearch(e) {
 
   $("#gamerMessage").animate({ width: 'hide' }, 350);
 
-  if ($("#searchName").val() == '') {
+  if ($("#gamerName").val() == '') {
     handleError("Please enter a game title to search.");
     return false;
   }
 
-  sendAjax('GET', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
+  sendAjax('POST', $("#searchForm").attr("action"), $("#searchForm").serialize(), function () {
     loadGamersFromServer();
   });
 
@@ -84,10 +87,10 @@ var SearchForm = function SearchForm(props) {
         name: "searchForm",
         onSubmit: handleSearch,
         action: "/getReviews",
-        method: "GET",
+        method: "POST",
         className: "gamerForm"
       },
-      React.createElement("input", { id: "searchName", type: "text", name: "name", placeholder: "Game Title" }),
+      React.createElement("input", { id: "gamerName", type: "text", name: "name", placeholder: "Game Title" }),
       React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
       React.createElement("input", { className: "searchGamerSubmit", type: "submit", value: "Search" })
     )
@@ -169,7 +172,9 @@ var setup = function setup(csrf) {
   if (URL == "ount") {
     ReactDOM.render(React.createElement(GamerForm, { csrf: csrf }), document.querySelector("#makeGamer"));
     loadGamersFromServer();
-  } else if (URL == "arch") {
+  }
+
+  if (URL == "arch") {
     ReactDOM.render(React.createElement(SearchForm, { csrf: csrf }), document.querySelector("#searchGamer"));
     loadGamersFromServer();
   }

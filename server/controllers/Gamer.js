@@ -1,5 +1,6 @@
 const models = require('../models');
 const Gamer = models.Gamer;
+let gameTitle = "";
 
 const accountPage = (req, res) => {
   Gamer.GamerModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -52,7 +53,6 @@ const makeGamer = (req, res) => {
   };
 
   const newGamer = new Gamer.GamerModel(gamerData);
-
   const gamerPromise = newGamer.save();
 
   gamerPromise.then(() => res.json({
@@ -75,17 +75,17 @@ const makeGamer = (req, res) => {
   return gamerPromise;
 };
 
+
 const getReviews = (request, response) => {
   const req = request;
   const res = response;
+  console.log("Searching:", req.body.name);
 
-  if (!req.body.name) {
-    return res.status(400).json({
-      error: 'Hey! Game title is required.',
-    });
+  if (!req.body.name == '' || !req.body.name == undefined) {
+    gameTitle = req.body.name;
   }
 
-  return Gamer.GamerModel.findByName(req.body.name, (err, docs) => {
+  return Gamer.GamerModel.findByName(gameTitle, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured!' });
@@ -105,10 +105,14 @@ const getGamers = (request, response) => {
     }
     return res.json({ gamers: docs });
   });
+
 };
 
-const getRecentGamers = (response) => {
+const getRecentGamers = (request, response) => {
+  const req = request;
   const res = response;
+
+  console.log("Account Id: " + req.session.account._id);
 
   return Gamer.GamerModel.findRecent((err, docs) => {
     if (err) {
